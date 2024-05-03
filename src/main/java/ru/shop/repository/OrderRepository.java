@@ -1,20 +1,32 @@
 package ru.shop.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import ru.shop.model.Order;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-public class OrderRepository implements IRepository<Order> {
+@Repository
+public interface OrderRepository extends JpaRepository<Order, UUID> {
+    List<Order> findByCustomerId(UUID customerId);
+//    List<Order> orders = new ArrayList<>();
+//
+//    @Override
+//    public void save(Order order) {
+//        orders.add(order);
+//    }
+//
+//    @Override
+//    public List<Order> findAll() {
+//        return orders;
+////    }
+//
+//    @Override
+//    public Optional<Order> FindById(UUID id) {
+//        return findAll().stream()
+//                .filter(order -> order.getId().equals(id))
+//                .findFirst();
 
-    List<Order> orders = new ArrayList<>();
-
-    public void save(Order order) {
-        orders.add(order);
-    }
-
-    public List<Order> findAll() {
-        return orders;
-    }
-
+//    }
 }
